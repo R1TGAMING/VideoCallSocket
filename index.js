@@ -6,8 +6,17 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+app.use(express.static('public'))
+
 app.get('/', (req, res) => {
-  res.sendFile(import.meta.dirname + '/public/index.html')
+  res.sendFile(__dirname + '/index.html');
+})
+
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  
 })
 
 server.listen(3000, () => {
