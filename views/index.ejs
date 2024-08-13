@@ -11,12 +11,14 @@
     </style>
   </head>
   <body>
-    <input id='localPeer'>
-    <input id='remotePeer'>
-    <button id='call'>Call</button>
-    <video id="localVideo"></video>
-    <video id = 'remoteVideo'></video>
+    <div id = 'videoGrid'>
+      <p id = 'idPeer'></p>
+    </div>
     <script src="/socket.io/socket.io.js"></script>
-    <script type="module" src="client.js"></script>
+    <script>
+      const paramsId = '<%= idPeer %>'
+    </script>
+    <script type="module" src="client2.js"></script>
+    
   </body>
 </html>

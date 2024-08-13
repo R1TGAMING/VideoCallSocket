@@ -6,16 +6,20 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+app.get('/:idPeer', (req, res) => {
+  res.render('index', { idPeer: req.params.idPeer })
 })
 
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-
+  socket.on('join-room', (paramsId, id ) => {
+    socket.join(paramsId);
+    socket.broadcast.emit('user-connected', id);
+  })
   
 })
 
