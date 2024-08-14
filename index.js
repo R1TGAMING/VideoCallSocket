@@ -9,16 +9,24 @@ const io = new Server(server);
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
+app.get('/', (req, res) => {
+  res.sendFile(import.meta.dirname + '/public/home.html')
+})
+
 app.get('/:idPeer', (req, res) => {
   res.render('index', { idPeer: req.params.idPeer })
 })
 
 
+
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('join-room', (paramsId, id ) => {
-    socket.join(paramsId);
-    socket.broadcast.emit('user-connected', id);
+  socket.on('join-path', id => {
+    io.emit('input-path', id)
+  })
+  socket.on('join-room', (roomId, id) => {
+    socket.join(id)
+    socket.broadcast.emit('user-connected', id)
   })
   
 })
