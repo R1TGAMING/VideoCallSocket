@@ -5,8 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <style>
+      @media (max-width: 600px) {
+    #videoGrid {
+        width: 100%;
+        height: auto;
+    }
+
+    video {
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+    }
+      }
+      
+      #videoGrid {
+        width: 100%;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden; /* Mencegah scroll horizontal */
+    display: flex;
+    justify-content: center; /* Memastikan video berada di tengah */
+    align-items: center;
+      }
       video {
-        height : 200px
+        width: auto; 
+    height: 100%;
+    object-fit: cover;
       }
     </style>
   </head>
